@@ -1,19 +1,30 @@
 'use client';
-import React, { useContext } from 'react';
+import React from 'react';
 import { useRouter } from 'next/navigation';
-import { ToastContext } from '../../components/ToastProvider';
+import { Metadata } from 'next';
+import { useToastContext } from '../../components/ToastProvider';
+
+export const metadata: Metadata = {
+  title: 'Contact',
+  description: 'Contact form to send an email',
+};
 
 function ContactPage() {
   const router = useRouter();
-  const { createToast } = useContext(ToastContext);
+  const { createToast } = useToastContext();
 
-  function handleSubmit(event) {
+  function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    const name = event.target[0].value;
+
+    const target = event.target as typeof event.target & {
+      name: { value: string };
+      email: { value: string };
+      message: { value: string };
+    };
 
     createToast(
       `
-    Thanks ${name}, your message was received!`,
+    Thanks ${target.name.value}, your message was received!`,
       'success'
     );
 
