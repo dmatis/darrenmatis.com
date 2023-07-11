@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
 
-import { useToastContext } from '../ToastProvider';
-import Toast from '../Toast';
+import { useToastContext } from '@/components/ToastProvider';
+import Toast from '@/components/Toast';
 import styles from './ToastShelf.module.css';
 
 function ToastShelf() {

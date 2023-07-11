@@ -1,13 +1,7 @@
 'use client';
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { Metadata } from 'next';
-import { useToastContext } from '../../components/ToastProvider';
-
-export const metadata: Metadata = {
-  title: 'Contact',
-  description: 'Contact form to send an email',
-};
+import { useToastContext } from '@/components/ToastProvider';
 
 function ContactPage() {
   const router = useRouter();

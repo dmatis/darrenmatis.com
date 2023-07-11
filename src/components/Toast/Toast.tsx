@@ -8,8 +8,8 @@ import {
   X,
 } from 'react-feather';
 
-import { useToastContext } from '../ToastProvider';
-import VisuallyHidden from '../VisuallyHidden';
+import { useToastContext } from '@/components/ToastProvider';
+import VisuallyHidden from '@/components/VisuallyHidden';
 
 import styles from './Toast.module.css';
 

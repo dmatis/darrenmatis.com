@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
 
-import { ToastType } from '../Toast';
-import useKeydown from '../../hooks/use-keydown';
+import { ToastType } from '@/components/Toast';
+import useKeydown from '@/hooks/use-keydown';
 
 type ToastContextType = {
   toasts: ToastType[];

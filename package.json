@@ -4,10 +4,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "analyze": "cross-env ANALYZE=true npm run build",
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^13.4.9",
     "@types/node": "20.4.1",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
@@ -23,6 +25,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "prettier": "^3.0.0"
   }
 }
