@@ -1,31 +1,52 @@
 {
+  "name": "darrenmatis",
   "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "imports": {
+    "#*": "./*"
+  },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "analyze": "cross-env ANALYZE=true npm run build",
-    "format": "prettier --check --ignore-path .gitignore .",
-    "format:fix": "prettier --write --ignore-path .gitignore ."
+    "build": "remix build",
+    "dev": "remix dev --manual",
+    "lint": "eslint .",
+    "start": "remix-serve ./build/index.js",
+    "typecheck": "tsc"
   },
   "dependencies": {
-    "@next/bundle-analyzer": "^13.4.9",
-    "@types/node": "20.4.1",
-    "@types/react": "18.2.14",
-    "@types/react-dom": "18.2.6",
-    "autoprefixer": "10.4.14",
-    "eslint": "8.44.0",
-    "eslint-config-next": "13.4.9",
-    "next": "13.4.9",
-    "postcss": "8.4.25",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-feather": "^2.0.10",
-    "tailwindcss": "3.3.2",
-    "typescript": "5.1.6"
+    "@remix-run/css-bundle": "^2.4.0",
+    "@remix-run/node": "^2.4.0",
+    "@remix-run/react": "^2.4.0",
+    "@remix-run/serve": "^2.4.0",
+    "isbot": "^3.6.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss": "^3.3.3",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
-    "prettier": "^3.0.0"
-  }
+    "@remix-run/dev": "^2.4.0",
+    "@remix-run/eslint-config": "^2.3.0",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "@types/express": "^4.17.20",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "esbuild": "0.19.5",
+    "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "tsx": "^4.6.2",
+    "typescript": "^5.2.2"
+  },
+  "eslintIgnore": [
+    "/node_modules",
+    "/build",
+    "/public/build",
+    "/playwright-report",
+    "/server-build"
+  ]
 }

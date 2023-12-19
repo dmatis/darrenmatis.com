@@ -1,14 +1,38 @@
-# darrenmatis.com
+# Welcome to Remix!
 
-My personal blog written in NextJS
+- [Remix Docs](https://remix.run/docs)
 
-### Acknowledgements
+## Development
 
-Original source of the following components from Josh Comeau's course: [The Joy of React](https://www.joyofreact.com/)
+From your terminal:
 
+```sh
+npm run dev
 ```
-ToastProvider
-ToastShelf
-Toast
-VisuallyHidden
+
+This starts your app in development mode, rebuilding assets on file changes.
+
+## Deployment
+
+First, build your app for production:
+
+```sh
+npm run build
 ```
+
+Then run the app in production mode:
+
+```sh
+npm start
+```
+
+Now you'll need to pick a host to deploy it to.
+
+### DIY
+
+If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
+
+Make sure to deploy the output of `remix build`
+
+- `build/`
+- `public/build/`
