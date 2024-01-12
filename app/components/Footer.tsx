@@ -12,11 +12,11 @@ const Footer = () => {
 				</a>{' '}
 				or{' '}
 				<a
-					href="https://twitter.com/razzmattazzz"
+					href="https://discord.com/users/dmatis6600"
 					target="_blank"
 					rel="noopener noreferrer"
 				>
-					Twitter
+					Discord
 				</a>
 				.
 				<br />

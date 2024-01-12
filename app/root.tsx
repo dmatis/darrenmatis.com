@@ -10,7 +10,7 @@ import {
 import Header from '~/components/Header'
 import Footer from '~/components/Footer'
 
-import styles from './tailwind.css'
+import styles from '~/tailwind.css'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 

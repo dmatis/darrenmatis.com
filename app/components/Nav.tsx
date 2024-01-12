@@ -1,84 +1,39 @@
-import { NavLink, useLocation } from '@remix-run/react'
-// import ThemeToggle from './ThemeToggle'
-import { useState, useEffect } from 'react'
+import { NavLink } from '@remix-run/react'
 import { Menu, X } from 'lucide-react'
-import { AnimatePresence, motion } from 'framer-motion'
-// import {
-// 	mobileNavContainerVariant,
-// 	mobileNavListVariant,
-// 	mobileNavExitProps,
-// } from '~/data/animationConfig'
-
-const activeClassName = 'selected navlink'
-const activeStyleCallback = ({ isActive }: { isActive: boolean }) =>
-	isActive ? activeClassName : 'navlink'
+import { useState } from 'react'
 
 const NavLinks = () => {
 	return (
 		<>
-			<NavLink to="/" className={activeStyleCallback}>
-				Home
-			</NavLink>
-
-			<NavLink to="/blog" className={activeStyleCallback}>
-				Blog
-			</NavLink>
-
-			<NavLink to="/contact" className={activeStyleCallback}>
-				Contact
-			</NavLink>
+			<NavLink to="/about">About</NavLink>
+			<NavLink to="/blog">Blog</NavLink>
+			<NavLink to="/contact">Contact</NavLink>
 		</>
 	)
 }
 
 const Nav = () => {
 	const [isOpen, setIsOpen] = useState(false)
-	const location = useLocation()
 
 	const toggleNavbar = () => {
 		setIsOpen(!isOpen)
 	}
 
-	useEffect(() => {
-		setIsOpen(false)
-	}, [location.pathname])
-
 	return (
 		<>
-			<nav className="flex flex-[1] items-center justify-end overflow-hidden">
-				<div className="hidden justify-end md:flex">
+			<nav className="w-1/3 flex justify-end">
+				<div className="hidden w-full md:flex justify-between">
 					<NavLinks />
 				</div>
-				{/* <div className="w-[75px]">
-					<ThemeToggle />
-				</div> */}
-				<div className="flex w-[75px] justify-end md:hidden">
+				<div className="md:hidden">
 					<button onClick={toggleNavbar}>{isOpen ? <X /> : <Menu />}</button>
 				</div>
 			</nav>
-			<AnimatePresence mode="wait">
-				{isOpen && (
-					<motion.div
-						layout="position"
-						key="nav-links"
-						// variants={mobileNavContainerVariant}
-						initial="hidden"
-						animate="show"
-						className="mt-4 basis-full md:hidden"
-					>
-						{/* <motion.div variants={mobileNavListVariant} {...mobileNavExitProps}> */}
-						<NavLink to="/" className={activeStyleCallback}>
-							Home
-						</NavLink>
-						{/* </motion.div> */}
-						{/* <motion.div variants={mobileNavListVariant} {...mobileNavExitProps}> */}
-						<NavLink to="/blog" className={activeStyleCallback}>
-							Blog
-						</NavLink>
-					</motion.div>
-					// </motion.div>
-				)}
-			</AnimatePresence>
+			{isOpen && (
+				<div className="md:hidden flex flex-col items-center basis-full">
+					<NavLinks />
+				</div>
+			)}
 		</>
 	)
 }
