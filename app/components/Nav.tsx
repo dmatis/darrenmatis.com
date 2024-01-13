@@ -2,12 +2,23 @@ import { NavLink } from '@remix-run/react'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
 
+const navLinkStyles = 'text-blue-500 hover:text-blue-800 select-none'
+const activeClassName = `font-semibold ${navLinkStyles}`
+const activeStyleCallback = ({ isActive }: { isActive: boolean }) =>
+	isActive ? activeClassName : navLinkStyles
+
 const NavLinks = () => {
 	return (
 		<>
-			<NavLink to="/about">About</NavLink>
-			<NavLink to="/blog">Blog</NavLink>
-			<NavLink to="/contact">Contact</NavLink>
+			<NavLink className={activeStyleCallback} to="/about">
+				About
+			</NavLink>
+			<NavLink className={activeStyleCallback} to="/blog">
+				Blog
+			</NavLink>
+			<NavLink className={activeStyleCallback} to="/contact">
+				Contact
+			</NavLink>
 		</>
 	)
 }
