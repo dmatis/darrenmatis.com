@@ -17,7 +17,6 @@ export default function Index() {
 				src={profilePhoto}
 				alt="My face"
 			/>
-			<Button>My Button</Button>
 			<div className="text-center space-y-2 sm:text-left">
 				<div className="space-y-0.5">
 					<p className="text-lg text-black font-semibold">{"I'm Darren"}</p>
