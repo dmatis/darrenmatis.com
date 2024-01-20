@@ -1,5 +1,5 @@
 import { NavLink } from '@remix-run/react'
-import logo from '~/images/logo-cropped.png'
+import logo from '../images/logo-cropped.png'
 
 const Logo = () => {
 	return (

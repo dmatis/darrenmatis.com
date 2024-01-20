@@ -1,6 +1,6 @@
 import type { MetaFunction } from '@remix-run/node'
-import { Button } from '@radix-ui/themes'
 import profilePhoto from '../images/profile-photo.png'
+import { NavLink } from '@remix-run/react'
 
 export const meta: MetaFunction = () => {
 	return [
@@ -22,9 +22,11 @@ export default function Index() {
 					<p className="text-lg text-black font-semibold">{"I'm Darren"}</p>
 					<p className="text-slate-500 font-medium">Fullstack Engineer</p>
 				</div>
-				<button className="select-none px-4 py-1 text-sm text-blue-600 font-semibold rounded-full border border-blue-200 hover:text-white hover:bg-blue-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2">
-					Contact
-				</button>
+				<NavLink to="/contact">
+					<button className="select-none px-4 py-1 text-sm text-blue-600 font-semibold rounded-full border border-blue-200 hover:text-white hover:bg-blue-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2">
+						Contact
+					</button>
+				</NavLink>
 			</div>
 		</div>
 	)

@@ -1,7 +1,8 @@
 /** @type {import('@remix-run/dev').AppConfig} */
 export default {
+	cacheDirectory: './node_modules/.cache/remix',
 	ignoredRouteFiles: ['**/.*'],
-	serverDependenciesToBundle: ['@radix-ui/themes'],
+	serverModuleFormat: 'esm',
 	tailwind: true,
 	postcss: true,
 	watchPaths: ['./tailwind.config.ts'],

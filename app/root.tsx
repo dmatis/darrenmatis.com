@@ -1,4 +1,5 @@
-import type { LinksFunction } from '@remix-run/node'
+import { type LinksFunction } from '@remix-run/node'
+import { cssBundleHref } from '@remix-run/css-bundle'
 import {
 	Links,
 	LiveReload,
@@ -7,17 +8,19 @@ import {
 	Scripts,
 	ScrollRestoration,
 } from '@remix-run/react'
-import Header from '~/components/Header'
-import Footer from '~/components/Footer'
-import { Theme } from '@radix-ui/themes'
+import Header from './components/Header.tsx'
+import Footer from './components/Footer.tsx'
 
-import styles from '~/tailwind.css'
-import radixStyles from '@radix-ui/themes/styles.css'
+import fontStylestylesheetUrl from './styles/font.css'
+import tailwindStylesheetUrl from './styles/tailwind.css'
 
-export const links: LinksFunction = () => [
-	{ rel: 'stylesheet', href: styles },
-	{ rel: 'stylesheet', href: radixStyles },
-]
+export const links: LinksFunction = () => {
+	return [
+		{ rel: 'stylesheet', href: fontStylestylesheetUrl },
+		{ rel: 'stylesheet', href: tailwindStylesheetUrl },
+		cssBundleHref ? { rel: 'stylesheet', href: cssBundleHref } : undefined,
+	].filter(Boolean)
+}
 
 export default function App() {
 	return (
@@ -29,15 +32,13 @@ export default function App() {
 				<Links />
 			</head>
 			<body>
-				<Theme>
-					<div className="flex min-h-screen flex-col">
-						<Header />
-						<main className="relative mx-auto my-0 box-border flex w-full max-w-7xl flex-[1] flex-grow flex-col py-[1em] px-[2em]">
-							<Outlet />
-						</main>
-						<Footer />
-					</div>
-				</Theme>
+				<div className="flex min-h-screen flex-col">
+					<Header />
+					<main className="relative mx-auto my-0 box-border flex w-full max-w-7xl flex-[1] flex-grow flex-col py-[1em] px-[2em]">
+						<Outlet />
+					</main>
+					<Footer />
+				</div>
 				<ScrollRestoration />
 				<Scripts />
 				<LiveReload />
