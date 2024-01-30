@@ -1,9 +1,9 @@
-import Logo from './Logo'
-import Nav from './Nav'
+import Logo from './Logo.tsx'
+import Nav from './Nav.tsx'
 
 const Header = () => {
 	return (
-		<header className="sticky top-0 flex-wrap z-[20] mx-auto flex w-full items-center justify-between border-b border-gray-500 p-8">
+		<header className="bg-slate-200 sticky top-0 flex-wrap z-[20] mx-auto flex w-full items-center justify-between border-b p-8">
 			<Logo />
 			<Nav />
 		</header>

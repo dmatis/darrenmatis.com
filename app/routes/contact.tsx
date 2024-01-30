@@ -2,14 +2,17 @@ import type { ActionFunctionArgs } from '@remix-run/node'
 import { json, redirect } from '@remix-run/node'
 import type { MetaFunction } from '@remix-run/react'
 import { Form, useActionData } from '@remix-run/react'
+import { HoneypotInputs } from 'remix-utils/honeypot/react'
 import { conform, useForm } from '@conform-to/react'
 import { getFieldsetConstraint, parse } from '@conform-to/zod'
 import { Label } from '../components/Label.tsx'
+// import { Resend } from 'resend'
 import { z } from 'zod'
 import { useIsSubmitting } from '../utils/misc.ts'
 import { Input } from '../components/Input.tsx'
 import { StatusButton } from '../components/StatusButton.tsx'
 import { TextArea } from '../components/TextArea.tsx'
+import { checkHoneypot } from '#app/utils/honeypot.server.ts'
 
 export const meta: MetaFunction = () => {
 	return [
@@ -27,19 +30,31 @@ const ContactFormSchema = z.object({
 	message: z.string().max(MESSAGE_MAX_LENGTH),
 })
 
+// const resend = new Resend('re_AzYczFcg_GcR6UrRjPoFpsMh222ncRNW7')
+
 export async function action({ request }: ActionFunctionArgs) {
 	const formData = await request.formData()
+	checkHoneypot(formData)
 	const submission = parse(formData, {
 		schema: ContactFormSchema,
 	})
 
 	if (!submission.value) {
-		return json({ status: 'error', submission } as const, { status: 400 })
+		return json({ status: 'error', submission }, { status: 400 })
 	}
 
-	// const { name, email, message } = submission.value
+	const { name, email, message } = submission.value
 
-	// await sendEmail({ name, email, message})
+	// const { data, error } = await resend.emails.send({
+	// 	from: `${name} <${email}>`,
+	// 	to: ['darren.matis@gmail.com'],
+	// 	subject: '[darrenmatis.com] New Message',
+	// 	html: message,
+	// })
+
+	// if (error) {
+	// 	return json({ status: 'error', submission }, { status: 400 })
+	// }
 
 	// display toast message
 	return redirect(`/`)
@@ -81,6 +96,7 @@ export default function Contact() {
 			<h2 className="text-blue-700 text-xl mb-3">Send a Message</h2>
 			<Form method="post" {...form.props}>
 				<div className="flex flex-col gap-3 select-none">
+					<HoneypotInputs />
 					<div>
 						<Label htmlFor={fields.name.id}>Name</Label>
 						<Input {...conform.input(fields.name)} />
