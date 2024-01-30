@@ -13,6 +13,8 @@ import { Input } from '../components/Input.tsx'
 import { StatusButton } from '../components/StatusButton.tsx'
 import { TextArea } from '../components/TextArea.tsx'
 import { checkHoneypot } from '#app/utils/honeypot.server.ts'
+import { validateCSRF } from '#app/utils/csrf.server.ts'
+import { AuthenticityTokenInput } from 'remix-utils/csrf/react'
 
 export const meta: MetaFunction = () => {
 	return [
@@ -34,7 +36,13 @@ const ContactFormSchema = z.object({
 
 export async function action({ request }: ActionFunctionArgs) {
 	const formData = await request.formData()
+
+	// Validate the CSRF token
+	await validateCSRF(formData, request.headers)
+
+	// Validate that honeypot field is not filled out
 	checkHoneypot(formData)
+
 	const submission = parse(formData, {
 		schema: ContactFormSchema,
 	})
@@ -95,6 +103,7 @@ export default function Contact() {
 		<div className="flex flex-col items-center justify-center py-8 px-8 max-w-md mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0">
 			<h2 className="text-blue-700 text-xl mb-3">Send a Message</h2>
 			<Form method="post" {...form.props}>
+				<AuthenticityTokenInput />
 				<div className="flex flex-col gap-3 select-none">
 					<HoneypotInputs />
 					<div>
